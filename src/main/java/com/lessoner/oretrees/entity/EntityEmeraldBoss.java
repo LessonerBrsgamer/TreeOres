@@ -79,7 +79,7 @@ public class EntityEmeraldBoss extends EntityMob implements IBossDisplayData{
     }
     protected void dropFewItems(boolean par1, int par2)
     {
-            this.entityDropItem(new ItemStack(TreeOres.BossSapling,1,6), 1);
+            this.entityDropItem(new ItemStack(TreeOres.BossSapling,1,5), 1);
 
     }
     
