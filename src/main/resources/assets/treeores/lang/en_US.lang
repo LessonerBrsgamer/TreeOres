@@ -51,6 +51,33 @@ item.chop3.xp.name=XP Wood Chop
 item.itt.name=Transformer
 item.ittn.name=Nether Transformer
 item.ittr.name=Reinforced Transformer
+item.gls.name=Glowstone Boss Spawner
+item.obs.name=Obsidian Boss Spawner
+item.pus.name=Pumpkin Boss Spawner
+item.dis.name=Diamond Boss Spawner
+item.qus.name=Quartz Boss Spawner
+item.gos.name=Gold Boss Spawner
+item.xps.name=XP Boss Spawner
+item.irs.name=Iron Boss Spawner
+item.ems.name=Emerald Boss Spawner
+item.las.name=Lapis Boss Spawner
+item.cos.name=Coal Boss Spawner
+item.res.name=Redstone Boss Spawner
+
+entity.GlowstoneTreeBoss.name=Glowstone Boss
+entity.IronTreeBoss.name=Iron Boss
+entity.CoalTreeBoss.name=Coal Boss
+entity.RedstoneTreeBoss.name=Redstone Boss
+entity.GoldTreeBoss.name=Gold Boss
+entity.EmeraldTreeBoss.name=Emerald Boss
+entity.DiamondTreeBoss.name=Diamond Boss
+entity.QuartzTreeBoss.name=Quartz Boss
+entity.LapisTreeBoss.name=Lapis Boss
+entity.ObsidianTreeBoss.name=Obsidian Boss
+entity.PumpkinTreeBoss.name=Pumpkin Boss
+entity.XPTreeBoss.name=XP Boss
+
+
 
 //Thaumcraft
 item.THchop.thaumium.name=Thaumium Wood Chop
