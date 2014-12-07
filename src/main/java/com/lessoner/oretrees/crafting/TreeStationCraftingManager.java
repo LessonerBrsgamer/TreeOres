@@ -1,5 +1,7 @@
 package com.lessoner.oretrees.crafting;
 
+import ic2.api.item.IC2Items;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -58,8 +60,18 @@ public class TreeStationCraftingManager {
 				}
 			}
 			for (int i = 0; i < 4; i++) {
+				if (Loader.isModLoaded("IC2")) {
+					this.addRecipe(new ItemStack(TreeOres.IC2Log, 1, i), new Object[] { "XX", "XX", 'X', new ItemStack(TreeOres.IC2Chop, 1, i) });
+				}
+			}
+			for (int i = 0; i < 4; i++) {
 				if (Loader.isModLoaded("Thaumcraft")) {
 					this.addRecipe(new ItemStack(TreeOres.ThaumcraftLog2, 1, i), new Object[] { "XX", "XX", 'X', new ItemStack(TreeOres.ThaumcraftChop2, 1, i) });
+				}
+			}
+			for (int i = 0; i < 2; i++) {
+				if (Loader.isModLoaded("TConstruct")) {
+					this.addRecipe(new ItemStack(TreeOres.TCLog, 1, i), new Object[] { "XX", "XX", 'X', new ItemStack(TreeOres.TCChop, 1, i) });
 				}
 			}
 		}
@@ -84,6 +96,16 @@ public class TreeStationCraftingManager {
 					this.addRecipe(new ItemStack(TreeOres.ThaumcraftLog2, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(TreeOres.ThaumcraftChop2, 1, i) });
 				}
 			}
+			for (int i = 0; i < 4; i++) {
+				if (Loader.isModLoaded("IC2")) {
+					this.addRecipe(new ItemStack(TreeOres.IC2Log, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(TreeOres.IC2Chop, 1, i) });
+				}
+			}
+			for (int i = 0; i < 2; i++) {
+				if (Loader.isModLoaded("TConstruct")) {
+					this.addRecipe(new ItemStack(TreeOres.TCLog, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(TreeOres.TCChop, 1, i) });
+				}
+			}
 		}
 
 		this.addRecipe(new ItemStack(TreeOres.itemTransformer), new Object[] { " c ", "dsi", " g ", 'c', Items.coal, 'd', Items.diamond, 's', Items.slime_ball, 'i',
@@ -93,6 +115,184 @@ public class TreeStationCraftingManager {
 				Items.diamond });
 		if (TreeOres.irontree) {
 			this.addRecipe(new ItemStack(TreeOres.blockSapling, 1, 0), new Object[] { "III", "ISI", "III", 'I', Blocks.iron_block, 'S', Blocks.sapling });
+		}
+
+		if (Loader.isModLoaded("TConstruct")) {
+			this.addRecipe(new ItemStack(TreeOres.TCSapling, 1, 0), new Object[] { "XXX", "XSX", "XXX", 'X',
+					new ItemStack(GameRegistry.findBlock("TConstruct", "MetalBlock"), 2, 1), 'S', Blocks.sapling });
+			this.addRecipe(new ItemStack(TreeOres.TCSapling, 1, 1), new Object[] { "XXX", "XSX", "XXX", 'X',
+					new ItemStack(GameRegistry.findBlock("TConstruct", "MetalBlock"), 2, 0), 'S', Blocks.sapling });
+
+			this.addRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 8,4), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.TCLog, 1, 0), 'S',
+					TreeOres.itemTransformerNether });
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 7,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 6,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 5,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 4,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 3,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 2,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.TCLog, 1, 0), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 1,4), new Object[] { new ItemStack(TreeOres.TCLog, 1, 0),
+					new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 8,3), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.TCLog, 1, 1), 'S',
+					TreeOres.itemTransformerNether });
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 7,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 6,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 5,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 4,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 3,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 2,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.TCLog, 1, 1), new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("TConstruct", "materials"), 1,3), new Object[] { new ItemStack(TreeOres.TCLog, 1, 1),
+					new ItemStack(TreeOres.itemTransformerNether, 1) });
+
+		}
+
+		if (Loader.isModLoaded("IC2")) {
+			if (TreeOres.IC2trees) {
+
+				this.addRecipe(new ItemStack(TreeOres.IC2Sapling, 1, 0), new Object[] { "XXX", "XSX", "XXX", 'X', IC2Items.getItem("copperBlock"), 'S', Blocks.sapling });
+				this.addRecipe(new ItemStack(TreeOres.IC2Sapling, 1, 1), new Object[] { "XXX", "XSX", "XXX", 'X', IC2Items.getItem("tinBlock"), 'S', Blocks.sapling });
+				this.addRecipe(new ItemStack(TreeOres.IC2Sapling, 1, 2), new Object[] { "XXX", "XSX", "XXX", 'X', IC2Items.getItem("uraniumBlock"), 'S', Blocks.sapling });
+				this.addRecipe(new ItemStack(TreeOres.IC2Sapling, 1, 3), new Object[] { "XXX", "XSX", "XXX", 'X', IC2Items.getItem("leadBlock"), 'S', Blocks.sapling });
+
+				this.addRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 8), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.IC2Log, 1, 0), 'S',
+						TreeOres.itemTransformer });
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 7), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 6), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 5), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 4), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 3), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 2), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.IC2Log, 1, 0), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "copperIngot"), 1), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 0),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 8), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.IC2Log, 1, 1), 'S',
+						TreeOres.itemTransformer });
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 7), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 6), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 5), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 4), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 3), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 2), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.IC2Log, 1, 1), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "tinIngot"), 1), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 1),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 8), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.IC2Log, 1, 0), 'S',
+						TreeOres.itemTransformer });
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 7), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 6), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 5), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 4), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 3), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 2), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.IC2Log, 1, 2), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "uraniumIngot"), 1), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 2),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 8), new Object[] { "III", "ISI", "III", 'I', new ItemStack(TreeOres.IC2Log, 1, 0), 'S',
+						TreeOres.itemTransformer });
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 7), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 6), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 5), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 4), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 3), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 2), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.IC2Log, 1, 3), new ItemStack(TreeOres.itemTransformer, 1) });
+
+				this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("IC2", "leadIngot"), 1), new Object[] { new ItemStack(TreeOres.IC2Log, 1, 3),
+						new ItemStack(TreeOres.itemTransformer, 1) });
+			}
 		}
 
 		if (Loader.isModLoaded("Thaumcraft")) {
@@ -126,20 +326,236 @@ public class TreeStationCraftingManager {
 			}
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 8, 2), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 7, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 6, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 5, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 4, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 3, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 2, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 1, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 8, 3), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 7, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 6, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 5, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 4, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 3, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 2, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemResource"), 1, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 0), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 0), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 1), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 1), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 2), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftLog, 1, 3), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 2), new Object[] { new ItemStack(TreeOres.ThaumcraftLog, 1, 3),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 3), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 0), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 3), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 0),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 4), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 1), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 4), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 1),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 			this.addRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 8, 5), new Object[] { "III", "ISI", "III", 'I',
 					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), 'S', TreeOres.ThaumcraftTransformer });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 7, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 6, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 5, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 4, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 3, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 2, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftLog2, 1, 2), new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
+			this.addShapelessRecipe(new ItemStack(GameRegistry.findItem("Thaumcraft", "ItemShard"), 1, 5), new Object[] { new ItemStack(TreeOres.ThaumcraftLog2, 1, 2),
+					new ItemStack(TreeOres.ThaumcraftTransformer, 1) });
+
 		}
 		if (TreeOres.goldtree) {
 			this.addRecipe(new ItemStack(TreeOres.blockSapling, 1, 1), new Object[] { "III", "ISI", "III", 'I', Blocks.gold_block, 'S', Blocks.sapling });

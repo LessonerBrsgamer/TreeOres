@@ -5,20 +5,31 @@ import java.io.IOException;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
+import com.lessoner.oretrees.IC2.IC2Chop;
+import com.lessoner.oretrees.IC2.IC2Leaf;
+import com.lessoner.oretrees.IC2.IC2Log;
+import com.lessoner.oretrees.IC2.IC2Sapling;
+import com.lessoner.oretrees.IC2.ItemIC2Leaf;
+import com.lessoner.oretrees.IC2.ItemIC2Log;
+import com.lessoner.oretrees.IC2.ItemIC2Saplings;
+import com.lessoner.oretrees.TC.ItemTCLeaf;
+import com.lessoner.oretrees.TC.ItemTCLog;
+import com.lessoner.oretrees.TC.ItemTCSaplings;
+import com.lessoner.oretrees.TC.TCChop;
+import com.lessoner.oretrees.TC.TCLeaf;
+import com.lessoner.oretrees.TC.TCLog;
+import com.lessoner.oretrees.TC.TCSapling;
+import com.lessoner.oretrees.crafting.TreeStation;
 import com.lessoner.oretrees.entity.EntityCoalBoss;
 import com.lessoner.oretrees.entity.EntityDiamondBoss;
 import com.lessoner.oretrees.entity.EntityEmeraldBoss;
@@ -111,7 +122,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -119,7 +129,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TreeOres {
 
 	public static final String MODID = "treeores";
-	public static final String VERSION = "5.0"; // TODO change this every time
+	public static final String VERSION = "5.5"; // TODO change this every time
 
 	public static CreativeTabs treeores;
 
@@ -142,6 +152,7 @@ public class TreeOres {
 	public static Block BossSapling;
 	public static Block BossSapling2;
 	public static Block blockSapling2;
+	
 	public static Item itemTransformer;
 	public static Item itemTransformerNether;
 	public static Item itemTransformerReinforced;
@@ -171,6 +182,16 @@ public class TreeOres {
 	public static Block ThaumcraftSapling2;
 	public static Item ThaumcraftChop2;
 	public static Item ThaumcraftTransformer;
+	
+	public static Block IC2Log;
+	public static Block IC2Leaf;
+	public static Block IC2Sapling;
+	public static Item IC2Chop;
+
+	public static Block TCLog;
+	public static Block TCLeaf;
+	public static Block TCSapling;
+	public static Item TCChop;
 
 	@Instance(MODID)
 	public static TreeOres instance;
@@ -196,13 +217,21 @@ public class TreeOres {
 	public static boolean usechops;
 
 	public static boolean thaumictrees;
+	public static boolean IC2trees;
+	public static boolean TCtrees;
 
 	public static String saplings;
 	public static String THsaplings;
+	public static String IC2saplings;
+	public static String TCsaplings;
 	public static String logs;
 	public static String THlogs;
+	public static String IC2logs;
+	public static String TClogs;
 	public static String leaves;
 	public static String THleaves;
+	public static String IC2leaves;
+	public static String TCleaves;
 
 	public void initConfiguration(FMLPreInitializationEvent e) {
 		Configuration config = new Configuration(new File("config/treeores.cfg"));
@@ -232,6 +261,19 @@ public class TreeOres {
 			THsaplings = config.get("oredict", "oredict for thaumcraft saplings", "treeSapling").toString();
 
 		}
+		if (Loader.isModLoaded("IC2")) {
+			IC2trees = config.get("blocks", "Does IC2 Trees Grow?", true).getBoolean();
+			IC2logs = config.get("oredict", "oredict for IC2 logs", "logWood").toString();
+			IC2leaves = config.get("oredict", "oredict for IC2 leaves", "treeLeaves").toString();
+			IC2saplings = config.get("oredict", "oredict for IC2 saplings", "treeSapling").toString();
+			
+		}
+		if(Loader.isModLoaded("TConstruct")){
+			TCtrees = config.get("blocks", "Does TConstruct Trees Grow?", true).getBoolean();
+			TClogs = config.get("oredict", "oredict for TConstruct logs", "logWood").toString();
+			TCleaves = config.get("oredict", "oredict for TConstruct leaves", "treeLeaves").toString();
+			TCsaplings = config.get("oredict", "oredict for TConstruct saplings", "treeSapling").toString();
+		}
 
 		usechops = config.get("recipes", "you want to use chops?", true).getBoolean();
 		threex3recipechops = config.get("recipes", "is log recipe 3x3?", false).getBoolean();
@@ -242,6 +284,7 @@ public class TreeOres {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
 		this.initConfiguration(e);
+		
 
 		FMLCommonHandler.instance().bus().register(new UpdateEvent());
 
@@ -256,6 +299,13 @@ public class TreeOres {
 
 		if (Loader.isModLoaded("Thaumcraft")) {
 			everythingThaumcraft();
+		}
+		
+		if(Loader.isModLoaded("IC2")){
+			everythingIC2();
+		}
+		if(Loader.isModLoaded("TConstruct")){
+			everythingTC();
 		}
 
 		initializeBlocks();
@@ -342,6 +392,44 @@ public class TreeOres {
 		OreDictionary.registerOre(THlogs, new ItemStack(ThaumcraftLog2, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre(THleaves, new ItemStack(ThaumcraftLeaf2, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre(THsaplings, new ItemStack(ThaumcraftSapling2, 1, Short.MAX_VALUE));
+	}
+	
+	public void everythingIC2(){
+		IC2Log = new IC2Log().setBlockName("IC2Log").setCreativeTab(treeores);
+		IC2Leaf = new IC2Leaf().setBlockName("IC2Leaf").setCreativeTab(treeores);
+		IC2Sapling = new IC2Sapling().setBlockName("IC2Sapling").setCreativeTab(treeores);
+		IC2Chop = new IC2Chop().setUnlocalizedName("IC2Chop").setCreativeTab(treeores);
+		
+		GameRegistry.registerBlock(IC2Log, ItemIC2Log.class, IC2Log.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(IC2Leaf, ItemIC2Leaf.class, IC2Leaf.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(IC2Sapling, ItemIC2Saplings.class, IC2Sapling.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(IC2Chop, "IC2Chop");
+		GameRegistry.registerCustomItemStack("copper", new ItemStack(IC2Chop, 1, 0));
+		GameRegistry.registerCustomItemStack("tin", new ItemStack(IC2Chop, 1, 1));
+		GameRegistry.registerCustomItemStack("uranium", new ItemStack(IC2Chop, 1, 2));
+		GameRegistry.registerCustomItemStack("lead", new ItemStack(IC2Chop, 1, 3));
+		
+		OreDictionary.registerOre(IC2logs, new ItemStack(IC2Log, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre(IC2leaves, new ItemStack(IC2Leaf, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre(IC2saplings, new ItemStack(IC2Sapling, 1, Short.MAX_VALUE));
+	}
+
+	public void everythingTC(){
+		TCLog = new TCLog().setBlockName("TCLog").setCreativeTab(treeores);
+		TCLeaf = new TCLeaf().setBlockName("TCLeaf").setCreativeTab(treeores);
+		TCSapling = new TCSapling().setBlockName("TCSapling").setCreativeTab(treeores);
+		TCChop = new TCChop().setUnlocalizedName("TCChop").setCreativeTab(treeores);
+		
+		GameRegistry.registerBlock(TCLog, ItemTCLog.class, TCLog.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(TCLeaf, ItemTCLeaf.class, TCLeaf.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(TCSapling, ItemTCSaplings.class, TCSapling.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(TCChop, "TCChop");
+		GameRegistry.registerCustomItemStack("ardite", new ItemStack(IC2Chop, 1, 0));
+		GameRegistry.registerCustomItemStack("cobalt", new ItemStack(IC2Chop, 1, 1));
+		
+		OreDictionary.registerOre(TClogs, new ItemStack(TCLog, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre(TCleaves, new ItemStack(TCLeaf, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre(TCsaplings, new ItemStack(TCSapling, 1, Short.MAX_VALUE));
 	}
 
 	public void initializeBlocks() {
@@ -451,7 +539,6 @@ public class TreeOres {
 	}
 
 	public void registerEntities() {
-		// Entities
 		EntityHandler.registerMonsters(EntityIronBoss.class, "IronTreeBoss");
 		EntityHandler.registerMonsters(EntityGoldBoss.class, "GoldTreeBoss");
 		EntityHandler.registerMonsters(EntityCoalBoss.class, "CoalTreeBoss");
